@@ -14,7 +14,9 @@ const task_service_1 = require("./task.service");
 const createTaskController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const taskData = req.body;
+        console.log(taskData, 'added data');
         const result = yield task_service_1.taskServices.createTask(taskData);
+        console.log(result, 'result');
         res.status(200).send({
             data: true,
             result
@@ -26,8 +28,11 @@ const createTaskController = (req, res, next) => __awaiter(void 0, void 0, void 
 });
 const getAllTaskController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        //@ts-ignore
+        const task = req.query.task;
         const email = req.params.email;
-        const result = yield task_service_1.taskServices.getAllTask(email);
+        console.log(req.body, 'body');
+        const result = yield task_service_1.taskServices.getAllTask(email, task || '');
         res.status(200).send({
             data: true,
             result
@@ -37,6 +42,44 @@ const getAllTaskController = (req, res, next) => __awaiter(void 0, void 0, void 
         next(error);
     }
 });
+const updateProcess = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const result = yield task_service_1.taskServices.updateProcessService(id);
+        res.status(200).send({
+            data: true,
+            result
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+const updatedTaskController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const updatedData = req.body;
+        console.log(updatedData, 'updatedData now');
+        const result = yield task_service_1.taskServices.updateTaskService(updatedData, id);
+        res.status(200).send({
+            data: true,
+            result
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+const deletedOneTaskController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const result = yield task_service_1.taskServices.deletedOneTask(id);
+        res.status(200).send({ data: true, result });
+    }
+    catch (error) {
+        next(error);
+    }
+});
 exports.TaskController = {
-    createTaskController, getAllTaskController
+    createTaskController, getAllTaskController, updateProcess, updatedTaskController, deletedOneTaskController
 };

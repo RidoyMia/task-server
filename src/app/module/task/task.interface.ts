@@ -3,6 +3,6 @@ export interface Itask {
     author : string,
     descriptions : string,
     deadlines : string,
-    priority : 'High' | 'Law' | 'moderate'
+    priority : 'high' | 'Low' | 'moderate'
     process : 'to-do' | 'ongoing' | 'completed'
 }

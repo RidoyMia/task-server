@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const task_route_1 = __importDefault(require("./app/module/task/task.route"));
 const app = (0, express_1.default)();
-app.use((0, express_1.default)());
+app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use('/api/v1/task', task_route_1.default);
