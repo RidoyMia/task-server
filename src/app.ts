@@ -3,7 +3,7 @@ import cors from "cors"
 import taskRouter from "./app/module/task/task.route"
 const app:Application = express()
 
-app.use(express())
+app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({ extended : true}))
 

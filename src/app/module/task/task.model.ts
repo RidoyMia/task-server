@@ -20,7 +20,7 @@ const taskSchema = new Schema<Itask>({
     priority: {
         type: String,
         required: true,
-        enum: ['High', 'Low', 'moderate'],
+        enum: ['High', 'Law', 'moderate'],
          // Set the default value to 'High'
     },
     author : {
